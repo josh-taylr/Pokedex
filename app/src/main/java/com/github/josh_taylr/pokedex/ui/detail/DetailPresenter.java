@@ -8,7 +8,7 @@ import com.github.josh_taylr.pokedex.ui.base.Presenter;
 
 public class DetailPresenter implements Presenter<DetailView> {
 
-    private DetailView view;
+    DetailView view;
 
     @Override
     public void onCreate() {

@@ -32,4 +32,6 @@ dependencies {
     implementation 'com.google.dagger:dagger-android:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+    androidTestCompile 'org.mockito:mockito-android:2.10.0'
+    testCompile 'org.mockito:mockito-core:2.10.0'
 }

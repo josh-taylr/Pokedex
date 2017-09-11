@@ -2,6 +2,7 @@ package com.github.josh_taylr.pokedex;
 
 import android.app.Activity;
 
+import com.github.josh_taylr.pokedex.ui.detail.DetailActivity;
 import com.github.josh_taylr.pokedex.ui.detail.DetailActivitySubcomponent;
 import com.github.josh_taylr.pokedex.ui.list.ListActivity;
 import com.github.josh_taylr.pokedex.ui.list.ListActivitySubcomponent;
@@ -25,5 +26,11 @@ abstract class AppModule {
     @IntoMap
     @ActivityKey(ListActivity.class)
     abstract AndroidInjector.Factory<? extends Activity>
-    mainActivityInjectorFactory(ListActivitySubcomponent.Builder builder);
+    listActivityInjectorFactory(ListActivitySubcomponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @ActivityKey(DetailActivity.class)
+    abstract AndroidInjector.Factory<? extends Activity>
+    detailActivityInjectorFactory(DetailActivitySubcomponent.Builder builder);
 }

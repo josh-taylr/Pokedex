@@ -8,7 +8,7 @@ import com.github.josh_taylr.pokedex.ui.base.Presenter;
 
 public class ListPresenter implements Presenter<ListView> {
 
-    private ListView view;
+    ListView view;
 
     @Override
     public void onCreate() {

@@ -10,7 +10,7 @@ import dagger.Provides;
  */
 
 @Module
-class DetailActivityModule {
+public class DetailActivityModule {
 
     @Provides
     @PerActivity

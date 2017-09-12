@@ -1,4 +1,4 @@
-package com.github.josh_taylr.pokedex.inject;
+package com.github.josh_taylr.pokedex.inject.scope;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

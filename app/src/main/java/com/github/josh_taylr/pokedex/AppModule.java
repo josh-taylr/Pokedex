@@ -2,6 +2,7 @@ package com.github.josh_taylr.pokedex;
 
 import android.app.Activity;
 
+import com.github.josh_taylr.pokedex.data.RetrofitModule;
 import com.github.josh_taylr.pokedex.ui.detail.DetailActivity;
 import com.github.josh_taylr.pokedex.ui.detail.DetailActivitySubcomponent;
 import com.github.josh_taylr.pokedex.ui.list.ListActivity;
@@ -18,7 +19,7 @@ import dagger.multibindings.IntoMap;
  * Provides dependencies for the application class.
  */
 
-@Module(includes = AndroidInjectionModule.class,
+@Module(includes = {AndroidInjectionModule.class, RetrofitModule.class},
         subcomponents = { ListActivitySubcomponent.class, DetailActivitySubcomponent.class })
 abstract class AppModule {
 

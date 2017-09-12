@@ -1,6 +1,6 @@
 package com.github.josh_taylr.pokedex.ui.detail;
 
-import com.github.josh_taylr.pokedex.inject.PerActivity;
+import com.github.josh_taylr.pokedex.inject.scope.PerActivity;
 
 import dagger.Module;
 import dagger.Provides;

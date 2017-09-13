@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="detail_image_desc">Image of Pokémon</string>
+    <string name="detail_weight_label">Weight</string>
+    <string name="detail_height_label">Height</string>
 </resources>

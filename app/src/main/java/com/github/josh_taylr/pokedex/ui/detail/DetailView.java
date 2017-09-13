@@ -1,5 +1,6 @@
 package com.github.josh_taylr.pokedex.ui.detail;
 
+import com.github.josh_taylr.pokedex.model.Pokemon;
 import com.github.josh_taylr.pokedex.ui.base.MvpView;
 
 /**
@@ -8,4 +9,5 @@ import com.github.josh_taylr.pokedex.ui.base.MvpView;
 
 interface DetailView extends MvpView {
 
+    void showPokemon(Pokemon pokemon);
 }

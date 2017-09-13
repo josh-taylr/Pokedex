@@ -52,6 +52,10 @@ public class ListPresenter implements Presenter<ListView> {
         loadPokemon();
     }
 
+    public void onItemClick(String name) {
+        view.showDetail(name);
+    }
+
     void loadNextPage() {
         loadPokemon();
     }

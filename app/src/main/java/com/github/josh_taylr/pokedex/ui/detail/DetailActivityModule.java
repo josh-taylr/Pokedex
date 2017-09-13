@@ -17,4 +17,10 @@ public class DetailActivityModule {
     DetailPresenter detailPresenter() {
         return new DetailPresenter();
     }
+
+    @Provides
+    @PerActivity
+    PokemonFormat pokemonFormat() {
+        return new PokemonFormat();
+    }
 }

@@ -7,4 +7,12 @@ package com.github.josh_taylr.pokedex.model;
 public class PokemonSprites {
 
     String front_default;
+
+    public String getFront_default() {
+        return front_default;
+    }
+
+    public void setFront_default(String sprites) {
+        this.front_default = sprites;
+    }
 }

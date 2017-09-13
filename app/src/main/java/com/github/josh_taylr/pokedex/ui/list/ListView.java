@@ -13,4 +13,6 @@ interface ListView extends MvpView {
     void addNames(List<String> names);
 
     void showPageLoading(boolean visible);
+
+    void showDetail(String name);
 }

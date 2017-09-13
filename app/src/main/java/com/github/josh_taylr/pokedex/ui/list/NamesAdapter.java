@@ -27,6 +27,12 @@ class NamesAdapter extends RecyclerView.Adapter {
     private final List<String> names;
 
     private boolean isPageLoading;
+    private OnItemClickListener listener;
+
+    interface OnItemClickListener {
+
+        void onItemClick(View view, int position);
+    }
 
     NamesAdapter(List<String> names) {
         this.names = names;
@@ -67,6 +73,10 @@ class NamesAdapter extends RecyclerView.Adapter {
         return (position < names.size()) ? VIEW_TYPE_ITEM : VIEW_TYPE_LOADING;
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     void setPageLoading(boolean isPageLoading) {
         this.isPageLoading = isPageLoading;
     }
@@ -75,9 +85,21 @@ class NamesAdapter extends RecyclerView.Adapter {
         @BindView(android.R.id.text1)
         TextView text;
 
-        PokemonHolder(View itemView) {
+        PokemonHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (null != listener) {
+                        int position = getAdapterPosition();
+                        if (RecyclerView.NO_POSITION != position) {
+                            listener.onItemClick(itemView, position);
+                        }
+                    }
+                }
+            });
         }
     }
 

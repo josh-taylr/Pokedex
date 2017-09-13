@@ -9,6 +9,7 @@ import com.github.josh_taylr.pokedex.ui.base.Presenter;
 public class DetailPresenter implements Presenter<DetailView> {
 
     DetailView view;
+    private String name;
 
     @Override
     public void onCreate() {
@@ -33,6 +34,9 @@ public class DetailPresenter implements Presenter<DetailView> {
     @Override
     public void attachView(DetailView view) {
         this.view = view;
-        // TODO load the pokemon's data
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

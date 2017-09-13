@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.github.josh_taylr.pokedex.R;
 import com.github.josh_taylr.pokedex.ui.EndlessRecyclerViewScrollListener;
+import com.github.josh_taylr.pokedex.ui.detail.DetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +52,13 @@ public class ListActivity extends Activity implements ListView, HasActivityInjec
         // configure the recycler view and its adapter
         adapter = new NamesAdapter(this.names);
         adapter.setPageLoading(true);
+        adapter.setOnItemClickListener(new NamesAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                String name = ListActivity.this.names.get(position);
+                presenter.onItemClick(name);
+            }
+        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         list.setLayoutManager(layoutManager);
         list.setAdapter(adapter);
@@ -87,5 +96,10 @@ public class ListActivity extends Activity implements ListView, HasActivityInjec
 
         // the progress indicator is no longer one of the adapter's items
         adapter.notifyItemRemoved(this.names.size());
+    }
+
+    @Override
+    public void showDetail(String name) {
+        DetailActivity.startActivity(ListActivity.this, name);
     }
 }

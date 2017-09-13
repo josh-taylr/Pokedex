@@ -16,7 +16,7 @@ import timber.log.Timber;
 
 public class ListPresenter implements Presenter<ListView> {
 
-    ListView view;
+    private ListView view;
     private LoadPagesUsecase loadPagesUsecase;
     private Disposable disposable;
 
@@ -52,7 +52,7 @@ public class ListPresenter implements Presenter<ListView> {
         loadPokemon();
     }
 
-    public void onItemClick(String name) {
+    void onItemClick(String name) {
         view.showDetail(name);
     }
 

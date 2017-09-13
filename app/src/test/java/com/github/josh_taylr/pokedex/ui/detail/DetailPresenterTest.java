@@ -11,7 +11,7 @@ import org.mockito.MockitoAnnotations;
 
 import io.reactivex.Observable;
 
-import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class DetailPresenterTest {
@@ -29,13 +29,25 @@ public class DetailPresenterTest {
         MockitoAnnotations.initMocks(this);
 
         presenter = new DetailPresenter(loadPokemonUsecase);
-        when(loadPokemonUsecase.execute()).thenReturn(Observable.just(getArcanine()));
-        presenter.attachView(view);
     }
 
     @Test
-    public void attachView() throws Exception {
-        assertEquals(this.view, presenter.view);
+    public void showPokemon() throws Exception {
+        Pokemon arcanine = getArcanine();
+        when(loadPokemonUsecase.execute()).thenReturn(Observable.just(arcanine));
+
+        presenter.attachView(view);
+
+        verify(view).showLoading();
+        verify(view).showPokemon(arcanine);
+    }
+
+    @Test
+    public void setName() throws Exception {
+        String psyduck = "Psyduck";
+        presenter.setName(psyduck);
+
+        verify(loadPokemonUsecase).setName(psyduck);
     }
 
     private Pokemon getArcanine() {

@@ -1,12 +1,14 @@
 package com.github.josh_taylr.pokedex.ui.detail;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,7 +25,7 @@ import dagger.android.AndroidInjection;
  * Implementation of the detail view responsible to displaying a Pokemon's information.
  */
 
-public class DetailActivity extends Activity implements DetailView {
+public class DetailActivity extends AppCompatActivity implements DetailView {
 
     public static final String EXTRA_NAME = "EXTRA_NAME";
 
@@ -35,6 +37,9 @@ public class DetailActivity extends Activity implements DetailView {
 
     @BindView(R.id.image)
     ImageView image;
+
+    @BindView(R.id.progress)
+    ProgressBar progressBar;
 
     @BindView(R.id.weight)
     TextView weight;
@@ -56,7 +61,18 @@ public class DetailActivity extends Activity implements DetailView {
         ButterKnife.bind(this);
 
         String name = getIntent().getStringExtra(EXTRA_NAME);
+
+        if (null != getSupportActionBar()) {
+            getSupportActionBar().setTitle(capitalize(name));
+        }
+
         initialisePresenter(name);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // TODO save view state before configuration change
     }
 
     @Override
@@ -84,7 +100,12 @@ public class DetailActivity extends Activity implements DetailView {
 
     @Override
     public void showLoading() {
-        // TODO display progress indicator until the data is loaded
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     /**
@@ -95,5 +116,9 @@ public class DetailActivity extends Activity implements DetailView {
     private void initialisePresenter(String name) {
         presenter.setName(name);
         presenter.attachView(this);
+    }
+
+    private String capitalize(final String line) {
+        return Character.toUpperCase(line.charAt(0)) + line.substring(1);
     }
 }

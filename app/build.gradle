@@ -29,6 +29,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation ('com.android.support.test.espresso:espresso-contrib:3.0.1') {
+        // Necessary to avoid version conflicts
+        exclude group: 'com.android.support'
+    }
     implementation 'com.google.dagger:dagger:2.11'
     implementation 'com.google.dagger:dagger-android:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'

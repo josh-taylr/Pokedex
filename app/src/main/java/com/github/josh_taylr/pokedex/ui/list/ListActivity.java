@@ -2,7 +2,9 @@ package com.github.josh_taylr.pokedex.ui.list;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -27,7 +29,7 @@ import dagger.android.HasActivityInjector;
  * Implementation of the list view responsible to displaying pokemon names.
  */
 
-public class ListActivity extends Activity implements ListView, HasActivityInjector {
+public class ListActivity extends AppCompatActivity implements ListView, HasActivityInjector {
 
     private final List<String> names = new ArrayList<>();
 
@@ -73,6 +75,12 @@ public class ListActivity extends Activity implements ListView, HasActivityInjec
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // TODO save state before configuration change. list data should be saved to a database for fast retrieval
+    }
+
+    @Override
     protected void onStop() {
         presenter.onStop();
         super.onStop();
@@ -84,18 +92,33 @@ public class ListActivity extends Activity implements ListView, HasActivityInjec
     }
 
     @Override
-    public void addNames(List<String> names) {
-        int size = this.names.size();
-        this.names.addAll(names);
-        adapter.notifyItemRangeInserted(size, names.size());
+    public void addNames(final List<String> names) {
+        Handler handler = new Handler(getMainLooper());
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                int size = ListActivity.this.names.size();
+                ListActivity.this.names.addAll(names);
+                adapter.notifyItemRangeInserted(size, names.size());
+                adapter.notifyItemChanged(ListActivity.this.names.size());
+            }
+        };
+        handler.post(runnable);
     }
 
     @Override
-    public void showPageLoading(boolean visible) {
-        adapter.setPageLoading(visible);
+    public void showPageLoading(final boolean visible) {
+        final Handler handler = new Handler(getMainLooper());
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                adapter.setPageLoading(visible);
 
-        // the progress indicator is no longer one of the adapter's items
-        adapter.notifyItemRemoved(this.names.size());
+                // the progress indicator is no longer one of the adapter's items
+                adapter.notifyItemRemoved(names.size());
+            }
+        };
+        handler.post(runnable);
     }
 
     @Override

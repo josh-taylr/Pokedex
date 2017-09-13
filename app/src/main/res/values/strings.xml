@@ -3,4 +3,6 @@
     <string name="detail_image_desc">Image of Pokémon</string>
     <string name="detail_weight_label">Weight</string>
     <string name="detail_height_label">Height</string>
+    <string name="detail_weight_fmt">-.- kg</string>
+    <string name="detail_height_fmt">-.- m</string>
 </resources>

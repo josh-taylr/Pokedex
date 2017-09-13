@@ -1,16 +1,13 @@
 package com.github.josh_taylr.pokedex.ui.list;
 
+import android.support.annotation.NonNull;
 import android.support.test.rule.ActivityTestRule;
-
-import com.github.josh_taylr.pokedex.R;
 
 import org.junit.Rule;
 import org.junit.Test;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivityTest {
 
@@ -19,6 +16,21 @@ public class ListActivityTest {
 
     @Test
     public void testListLabel() {
-        onView(withId(R.id.list)).check(matches(isDisplayed()));
+        activityTestRule.getActivity().addNames(getNames());
+
+        // TODO will need to inject a mock presenter into the view
+//        onView(withId(R.id.list))
+//                .perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+    }
+
+    @NonNull
+    private List<String> getNames() {
+        ArrayList<String> names = new ArrayList<>();
+        names.add("bulbasaur");
+        names.add("ivysaur");
+        names.add("venusaur");
+        names.add("charmander");
+        names.add("charmeleon");
+        return names;
     }
 }

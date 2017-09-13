@@ -12,4 +12,6 @@ interface DetailView extends MvpView {
     void showPokemon(Pokemon pokemon);
 
     void showLoading();
+
+    void hideLoading();
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ListPresenterTest {
@@ -30,15 +30,29 @@ public class ListPresenterTest {
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
-        when(loadPagesUsecase.execute()).thenReturn(Observable.just(getNames()));
         presenter = new ListPresenter(loadPagesUsecase);
     }
 
     @Test
-    public void attachView() throws Exception {
+    public void loadPokemonAddsName() throws Exception {
+        List<String> names = getNames();
+        when(loadPagesUsecase.execute()).thenReturn(Observable.just(names));
+
+        // presenter.attachView(ListView) invoked LoadPagesUsecase.loadPokemon()
         presenter.attachView(view);
 
-        assertEquals(this.view, presenter.view);
+        verify(view).addNames(names);
+    }
+
+    @Test
+    public void loadPokemonHidePageLoading() throws Exception {
+        List<String> names = new ArrayList<>();
+        when(loadPagesUsecase.execute()).thenReturn(Observable.just(names));
+
+        // presenter.attachView(ListView) invoked LoadPagesUsecase.loadPokemon()
+        presenter.attachView(view);
+
+        verify(view).showPageLoading(false);
     }
 
     @NonNull

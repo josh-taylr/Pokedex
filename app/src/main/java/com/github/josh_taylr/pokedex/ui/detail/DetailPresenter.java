@@ -15,7 +15,7 @@ import timber.log.Timber;
 
 public class DetailPresenter implements Presenter<DetailView> {
 
-    DetailView view;
+    private DetailView view;
     private LoadPokemonUsecase loadPokemonUsecase;
     private Disposable disposable;
     private String name;
@@ -60,6 +60,7 @@ public class DetailPresenter implements Presenter<DetailView> {
                     @Override
                     public void accept(Pokemon pokemon) throws Exception {
                         if (pokemon != null) {
+                            view.hideLoading();
                             view.showPokemon(pokemon);
                         }
                     }

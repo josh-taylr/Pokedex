@@ -20,7 +20,7 @@ public class ListPresenter implements Presenter<ListView> {
     private LoadPagesUsecase loadPagesUsecase;
     private Disposable disposable;
 
-    public ListPresenter(LoadPagesUsecase loadPagesUsecase) {
+    ListPresenter(LoadPagesUsecase loadPagesUsecase) {
         this.loadPagesUsecase = loadPagesUsecase;
     }
 
@@ -52,15 +52,20 @@ public class ListPresenter implements Presenter<ListView> {
         loadPokemon();
     }
 
+    void loadNextPage() {
+        loadPokemon();
+    }
+
     private void loadPokemon() {
         disposable = loadPagesUsecase.execute()
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<List<String>>() {
                     @Override
                     public void accept(List<String> names) throws Exception {
-                        if (names != null) {
-                            // TODO add these names to the recycler view
-                            Timber.d("%s names for display", names.size());
+                        if (names != null && !names.isEmpty()) {
+                            view.addNames(names);
+                        } else {
+                            view.showPageLoading(false);
                         }
                     }
                 }, new Consumer<Throwable>() {

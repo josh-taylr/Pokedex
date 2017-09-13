@@ -1,6 +1,7 @@
 package com.github.josh_taylr.pokedex.data;
 
 import com.github.josh_taylr.pokedex.model.NamedAPIResourceList;
+import com.github.josh_taylr.pokedex.model.Pokemon;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -20,5 +21,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<NamedAPIResourceList> getPokemon(int limit, int offset) {
         return apiService.getPokemon(limit, offset);
+    }
+
+    @Override
+    public Observable<Pokemon> getPokemon(String name) {
+        return apiService.getPokemon(name);
     }
 }

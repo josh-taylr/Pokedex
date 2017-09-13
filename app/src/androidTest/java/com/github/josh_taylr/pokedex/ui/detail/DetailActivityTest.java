@@ -30,7 +30,7 @@ public class DetailActivityTest {
                 .check(matches(withText("1.9 m")));
     }
 
-    public Pokemon getArcanine() {
+    private Pokemon getArcanine() {
         Pokemon arcanine = new Pokemon();
         arcanine.setName("Arcanine");
         arcanine.setWeight(1550);

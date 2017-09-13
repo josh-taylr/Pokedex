@@ -10,4 +10,6 @@ import com.github.josh_taylr.pokedex.ui.base.MvpView;
 interface DetailView extends MvpView {
 
     void showPokemon(Pokemon pokemon);
+
+    void showLoading();
 }

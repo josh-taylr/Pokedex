@@ -82,6 +82,11 @@ public class DetailActivity extends Activity implements DetailView {
         handler.post(runnable);
     }
 
+    @Override
+    public void showLoading() {
+        // TODO display progress indicator until the data is loaded
+    }
+
     /**
      * Encapsulate how we configure the presenter in a method as setName needs to be called before
      * attachView.

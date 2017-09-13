@@ -55,6 +55,9 @@ class NamesAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
+        if (0 == names.size()) {
+            return 0;
+        }
         return names.size() + (isPageLoading ? 1 : 0);
     }
 

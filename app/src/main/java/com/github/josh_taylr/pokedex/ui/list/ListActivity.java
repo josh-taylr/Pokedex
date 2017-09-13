@@ -76,14 +76,16 @@ public class ListActivity extends Activity implements ListView, HasActivityInjec
 
     @Override
     public void addNames(List<String> names) {
+        int size = this.names.size();
         this.names.addAll(names);
-
-        // more granular notifiers are available but require looping through new items
-        adapter.notifyDataSetChanged();
+        adapter.notifyItemRangeInserted(size, names.size());
     }
 
     @Override
     public void showPageLoading(boolean visible) {
         adapter.setPageLoading(visible);
+
+        // the progress indicator is no longer one of the adapter's items
+        adapter.notifyItemRemoved(this.names.size());
     }
 }

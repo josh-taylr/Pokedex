@@ -7,6 +7,7 @@ import com.github.josh_taylr.pokedex.model.NamedAPIResourceList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 
 /**
@@ -27,6 +28,8 @@ public class LoadPagesUsecase implements Usecase<List<String>> {
     @Override
     public Observable<List<String>> execute() {
         return repository.getPokemon(PAGE_SIZE , PAGE_SIZE * page)
+                // TODO using AndroidSchedulers here prohibits unit testing of the usecase
+                .observeOn(AndroidSchedulers.mainThread())
                 .map(new Function<NamedAPIResourceList, NamedAPIResourceList>() {
                     @Override
                     public NamedAPIResourceList apply(NamedAPIResourceList namedAPIResourceList) throws Exception {

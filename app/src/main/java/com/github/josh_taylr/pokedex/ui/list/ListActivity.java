@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.github.josh_taylr.pokedex.R;
+import com.github.josh_taylr.pokedex.data.ListSyncService;
 import com.github.josh_taylr.pokedex.ui.EndlessRecyclerViewScrollListener;
 import com.github.josh_taylr.pokedex.ui.detail.DetailActivity;
 
@@ -70,6 +71,8 @@ public class ListActivity extends AppCompatActivity implements ListView, HasActi
                 presenter.loadNextPage();
             }
         });
+
+        startService(ListSyncService.getStartIntent(this));
 
         presenter.attachView(this);
     }

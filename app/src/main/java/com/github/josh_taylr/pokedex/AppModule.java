@@ -2,6 +2,7 @@ package com.github.josh_taylr.pokedex;
 
 import com.github.josh_taylr.pokedex.data.ListSyncService;
 import com.github.josh_taylr.pokedex.data.ListSyncServiceModule;
+import com.github.josh_taylr.pokedex.data.Repository;
 import com.github.josh_taylr.pokedex.data.RetrofitRepository;
 import com.github.josh_taylr.pokedex.inject.scope.PerActivity;
 import com.github.josh_taylr.pokedex.ui.detail.DetailActivity;
@@ -38,7 +39,7 @@ abstract class AppModule {
 
     @Provides
     @Singleton
-    static RetrofitRepository retrofitRepository(Retrofit retrofit) {
+    static Repository retrofitRepository(Retrofit retrofit) {
         return new RetrofitRepository(retrofit);
     }
 

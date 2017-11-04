@@ -35,6 +35,8 @@ public class ListSyncService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         Timber.i("Sync Pokemon list...");
 
+        Timber.d("Usecase -> %s", loadAllPokemonUsecase);
+
         // TODO the network is unavailable. How do we show this in th UI?
 
         // TODO load all Pokémon into database through a domain object.

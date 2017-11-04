@@ -15,7 +15,7 @@ public class ListSyncServiceModule {
 
     @Provides
     @PerActivity
-    LoadAllPokemonUsecase loadAllPokemonUsecase(RetrofitRepository repository) {
+    LoadAllPokemonUsecase loadAllPokemonUsecase(Repository repository) {
         return new LoadAllPokemonUsecase(repository);
     }
 }

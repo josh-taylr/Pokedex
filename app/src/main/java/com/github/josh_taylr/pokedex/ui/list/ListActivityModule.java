@@ -1,6 +1,6 @@
 package com.github.josh_taylr.pokedex.ui.list;
 
-import com.github.josh_taylr.pokedex.data.RetrofitRepository;
+import com.github.josh_taylr.pokedex.data.Repository;
 import com.github.josh_taylr.pokedex.domain.LoadPagesUsecase;
 import com.github.josh_taylr.pokedex.inject.scope.PerActivity;
 
@@ -16,7 +16,7 @@ public class ListActivityModule {
 
     @Provides
     @PerActivity
-    ListPresenter listPresenter(RetrofitRepository repository) {
+    ListPresenter listPresenter(Repository repository) {
         return new ListPresenter(new LoadPagesUsecase(repository));
     }
 }

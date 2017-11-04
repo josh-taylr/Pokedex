@@ -6,10 +6,19 @@ package com.github.josh_taylr.pokedex.model;
 
 public class Pokemon {
 
+    int id;
     String name;
     int height;
     int weight;
     PokemonSprites sprites;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

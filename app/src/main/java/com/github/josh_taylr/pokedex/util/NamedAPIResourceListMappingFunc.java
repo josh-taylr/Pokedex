@@ -1,4 +1,4 @@
-package com.github.josh_taylr.pokedex.data;
+package com.github.josh_taylr.pokedex.util;
 
 import com.github.josh_taylr.pokedex.model.NamedAPIResourceList;
 import com.github.josh_taylr.pokedex.model.NamedAPIResult;

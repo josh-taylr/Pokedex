@@ -1,8 +1,8 @@
 package com.github.josh_taylr.pokedex.domain;
 
-import com.github.josh_taylr.pokedex.data.NamedAPIResourceListMappingFunc;
 import com.github.josh_taylr.pokedex.data.Repository;
 import com.github.josh_taylr.pokedex.model.NamedAPIResourceList;
+import com.github.josh_taylr.pokedex.util.NamedAPIResourceListMappingFunc;
 
 import java.util.List;
 

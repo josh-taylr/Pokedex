@@ -6,7 +6,6 @@ import com.github.josh_taylr.pokedex.inject.scope.PerActivity;
 
 import dagger.Module;
 import dagger.Provides;
-import retrofit2.Retrofit;
 
 /**
  * Provides the list activity's dependencies.
@@ -17,7 +16,7 @@ public class ListActivityModule {
 
     @Provides
     @PerActivity
-    ListPresenter listPresenter(Retrofit retrofit) {
-        return new ListPresenter(new LoadPagesUsecase(new RetrofitRepository(retrofit)));
+    ListPresenter listPresenter(RetrofitRepository repository) {
+        return new ListPresenter(new LoadPagesUsecase(repository));
     }
 }

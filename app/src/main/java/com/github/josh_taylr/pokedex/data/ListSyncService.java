@@ -5,9 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
+import com.github.josh_taylr.pokedex.domain.LoadAllPokemonUsecase;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 public class ListSyncService extends IntentService {
+
+    @Inject
+    LoadAllPokemonUsecase loadAllPokemonUsecase;
 
     public static Intent getStartIntent(Context context) {
          return new Intent(context, ListSyncService.class);
@@ -15,6 +23,12 @@ public class ListSyncService extends IntentService {
 
     public ListSyncService() {
         super("list-sync-service");
+    }
+
+    @Override
+    public void onCreate() {
+        AndroidInjection.inject(this);
+        super.onCreate();
     }
 
     @Override

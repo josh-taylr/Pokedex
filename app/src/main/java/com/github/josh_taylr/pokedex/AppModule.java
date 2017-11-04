@@ -1,7 +1,10 @@
 package com.github.josh_taylr.pokedex;
 
 import android.app.Activity;
+import android.app.Service;
 
+import com.github.josh_taylr.pokedex.data.ListSyncService;
+import com.github.josh_taylr.pokedex.data.ListSyncServiceSubcomponent;
 import com.github.josh_taylr.pokedex.data.RetrofitModule;
 import com.github.josh_taylr.pokedex.ui.detail.DetailActivity;
 import com.github.josh_taylr.pokedex.ui.detail.DetailActivitySubcomponent;
@@ -13,6 +16,7 @@ import dagger.Module;
 import dagger.android.ActivityKey;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
+import dagger.android.ServiceKey;
 import dagger.multibindings.IntoMap;
 
 /**
@@ -20,7 +24,7 @@ import dagger.multibindings.IntoMap;
  */
 
 @Module(includes = {AndroidInjectionModule.class, RetrofitModule.class},
-        subcomponents = { ListActivitySubcomponent.class, DetailActivitySubcomponent.class })
+        subcomponents = { ListActivitySubcomponent.class, DetailActivitySubcomponent.class, ListSyncServiceSubcomponent.class })
 abstract class AppModule {
 
     @Binds
@@ -34,4 +38,10 @@ abstract class AppModule {
     @ActivityKey(DetailActivity.class)
     abstract AndroidInjector.Factory<? extends Activity>
     detailActivityInjectorFactory(DetailActivitySubcomponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @ServiceKey(ListSyncService.class)
+    abstract AndroidInjector.Factory<? extends Service>
+    listSyncServiceInjectorFactory(ListSyncServiceSubcomponent.Builder builder);
 }

@@ -24,4 +24,10 @@ public class RetrofitModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
+
+    @Provides
+    @Singleton
+    RetrofitRepository retrofitRepository(Retrofit retrofit) {
+        return new RetrofitRepository(retrofit);
+    }
 }

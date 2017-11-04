@@ -20,7 +20,7 @@ public class ListPresenter implements Presenter<ListView> {
     private LoadPagesUsecase loadPagesUsecase;
     private Disposable disposable;
 
-    ListPresenter(LoadPagesUsecase loadPagesUsecase) {
+    public ListPresenter(LoadPagesUsecase loadPagesUsecase) {
         this.loadPagesUsecase = loadPagesUsecase;
     }
 

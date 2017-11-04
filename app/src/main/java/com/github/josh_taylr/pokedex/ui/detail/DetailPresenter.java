@@ -20,7 +20,7 @@ public class DetailPresenter implements Presenter<DetailView> {
     private Disposable disposable;
     private String name;
 
-    DetailPresenter(LoadPokemonUsecase loadPokemonUsecase) {
+    public DetailPresenter(LoadPokemonUsecase loadPokemonUsecase) {
         this.loadPokemonUsecase = loadPokemonUsecase;
     }
 
